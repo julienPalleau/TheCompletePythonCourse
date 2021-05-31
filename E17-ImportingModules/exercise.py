@@ -56,3 +56,4 @@ calc = Calculator()
 # print(calc.substract(7, 2))
 # print(calc.multiply(10, 6))
 print(calc.divide(50, 10))
+
