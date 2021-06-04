@@ -1,7 +1,14 @@
 import json
-
 """
-Concerned with storing and retrieving books from a list.
+Concerned with storing and retrieving books from a json file.
+format of the json file
+[
+    {
+        'name': 'Clean Code'
+        'author': 'Robert'
+        'read': True
+    }
+]
 """
 
 books_file = 'books.json'
@@ -19,13 +26,12 @@ def add_book(name, author):
 
 
 def get_all_books():
-    with open(books_file, 'r') as file:
+    with open('books_file', 'r') as file:
         return json.load(file)
 
 
-def _save_all_books(
-        books):  # the function name start with _ as it is a private function, so this function should be call from this file only.
-    with open(books_file, 'w') as file:
+def _save_all_books(books):  # the function name start with _ as it is a private function, so this function should be call from this file only.
+    with open('books_file', 'w') as file:
         json.dump(books, file)
 
 
