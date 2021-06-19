@@ -1,17 +1,16 @@
-from MilestoneProject2.Utils import database
+from MilestoneProject2.LIST.Utils import database
 
 
 def prompt_add_book():
-    name = input("Nom du livre ?")
-    author = input("Autheur du livre ?")
+    name = input("Nom du livre : ")
+    author = input("Autheur du livre : ")
     database.add_book(name, author)
 
 
 def list_books():
     books = database.get_all_books()
     for book in books:
-        read = 'YES' if book['read'] else 'NO'
-        print(f"{book['name']} by {book['author']}, read: {read}")
+        print(f"{book['name']} by {book['author']}, read: {book['read']}")
 
 
 def prompt_read_book():
@@ -24,15 +23,12 @@ def prompt_delete_book():
     database.delete_book(name)
 
 
-USER_CHOICE = """
- Enter:
- - 'a' to add a new book
- - 'l' to list all books
- - 'r' to mark a book as read
- - 'd' to delete a book
- - 'q' to quit
- 
- Your choice:"""
+USER_CHOICE = """ Enter: 
+- 'a' to add a new book
+- 'l' to list all books
+- 'r' to mark a book as read 
+- 'd' to delete a book 
+- 'q' to quit Your choice:"""
 
 user_options = {
     'a': prompt_add_book,
@@ -43,7 +39,6 @@ user_options = {
 
 
 def menu():
-    database.create_book_table()
     selection = input(USER_CHOICE)
     while selection != 'q':
         if selection in user_options:
@@ -51,11 +46,8 @@ def menu():
             selected_function()
         else:
             print('unknown, try again')
+
         selection = input(USER_CHOICE)
-    # def prompt_add_book() ask for book name and author
-    # def list_books() show all the books in our list
-    # def prompt_read_book() ask for book name and change it to "read" in our list
-    # def_prompt_delete_book() ask for book name and remove book from list
 
 
 menu()
