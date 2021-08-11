@@ -430,26 +430,50 @@ window = tk.Tk()
 # window.mainloop()
 
 # --------------------
-# Write a program that simulates rolling a six-sided die. There should be one button with the text "Roll".
-# When the user clicks the button, a random integer from 1 to 6 should be displayed.
+# # Write a program that simulates rolling a six-sided die. There should be one button with the text "Roll".
+# # When the user clicks the button, a random integer from 1 to 6 should be displayed.
+# #
+# # Hint: You can generate a random number using randint() in the random module. If you’re not familiar with the
+# # random module, then check out Generating Random Data in Python (Guide) for more information.
+# window.title("Rolling a six-side dice")
+# window.rowconfigure([0, 1], minsize=50, weight=1)
+# window.columnconfigure(0, minsize=50, weight=1)
 #
-# Hint: You can generate a random number using randint() in the random module. If you’re not familiar with the
-# random module, then check out Generating Random Data in Python (Guide) for more information.
-window.title("Rolling a six-side dice")
-window.rowconfigure([0, 1], minsize=150, weight=1)
-window.columnconfigure(0, minsize=50, weight=1)
+# from random import randint
+#
+#
+# def roll():
+#     lbl_value["text"] = str(randint(1, 6))
+#
+#
+# button_Roll = Button(master=window, text="Roll", height=5, width=20, command=roll)
+# lbl_value = tk.Label(master=window, height=5, width=20, text="?")
+#
+# button_Roll.grid(row=0, column=0, sticky="nsew")
+# lbl_value.grid(row=1, column=0)
+#
+# window.mainloop()
 
-from random import randint
+# --------------------
+
+def calcul():
+    degres_f = entry.get()
+    result = float((int(degres_f) - 32) * (5 / 9))
+    label2["text"] = "{r:1.2f}".format(r=result)
 
 
-def roll():
-    lbl_value["text"] = randint(1, 6)
+window.title("Temperature Converter")
+window.rowconfigure(0, minsize=50, weight=1)
+window.columnconfigure([0, 4], minsize=30, weight=1)
+entry = tk.Entry(window, bd=5)
+label1 = tk.Label(window, text="\N{DEGREE FAHRENHEIT}")
+buttonCalcul = tk.Button(window, text="\N{RIGHTWARDS BLACK ARROW}", command=calcul)
+label2 = tk.Label(window, text="")
+label3 = tk.Label(window, text="\N{DEGREE CELSIUS}")
 
-
-button_Roll = Button(master=window, text="Roll", height=5, width=20, command=roll)
-lbl_value = tk.Label(master=window, height=5, width=20, text="?")
-
-button_Roll.grid(row=0, column=0, sticky="nsew")
-lbl_value.grid(row=1, column=0)
-
+entry.grid(row=0, column=0)
+label1.grid(row=0, column=1)
+buttonCalcul.grid(row=0, column=2)
+label2.grid(row=0, column=3)
+label3.grid(row=0, column=4)
 window.mainloop()
