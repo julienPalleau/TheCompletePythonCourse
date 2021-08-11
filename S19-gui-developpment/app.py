@@ -61,6 +61,7 @@ import tkinter as tk
 # Create a window object
 window = tk.Tk()
 
+
 # label = tk.Label(
 #     text="Hello, Tkinter",
 #     fg="white",
@@ -459,7 +460,7 @@ window = tk.Tk()
 def calcul():
     degres_f = entry.get()
     result = float((int(degres_f) - 32) * (5 / 9))
-    label2["text"] = "{r:1.2f}".format(r=result)
+    label2["text"] = f"{result:1.2f}"
 
 
 window.title("Temperature Converter")
