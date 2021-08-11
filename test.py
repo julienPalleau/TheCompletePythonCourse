@@ -1,5 +1,14 @@
+movie_titles = [
+	"Forrest Gump",
+	"Howl's Moving Castle",
+	"No Country for Old Men"
+]
 
-file_name = "grand_canyon.005.png"
+movie_directors = [
+	"Robert Zemeckis",
+	"Hayao Miyazaki",
+	"Joel and Ethan Coen"
+]
 
-name, seperator, extension = file_name.partition(".")
-print(name, seperator, extension)
+movies = list(zip(movie_titles, movie_directors))
+
