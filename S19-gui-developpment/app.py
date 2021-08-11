@@ -61,7 +61,6 @@ import tkinter as tk
 # Create a window object
 window = tk.Tk()
 
-
 # label = tk.Label(
 #     text="Hello, Tkinter",
 #     fg="white",
@@ -406,26 +405,51 @@ window = tk.Tk()
 
 # --------------------
 
-def increase():
-    value = int(lbl_value["text"])
-    lbl_value["text"] = f"{value + 1}"
+# def increase():
+#     value = int(lbl_value["text"])
+#     lbl_value["text"] = f"{value + 1}"
+#
+#
+# def decrease():
+#     value = int(lbl_value["text"])
+#     lbl_value["text"] = f"{value - 1}"
+#
+#
+# window.rowconfigure(0, minsize=50, weight=1)
+# window.columnconfigure([0, 1, 2], minsize=50, weight=1)
+#
+# btn_decrease = tk.Button(master=window, text="-", command=decrease)
+# btn_decrease.grid(row=0, column=0, sticky="nsew")
+#
+# lbl_value = tk.Label(master=window, text="0")
+# lbl_value.grid(row=0, column=1)
+#
+# btn_increase = tk.Button(master=window, text="+", command=increase)
+# btn_increase.grid(row=0, column=2, sticky="nsew")
+#
+# window.mainloop()
+
+# --------------------
+# Write a program that simulates rolling a six-sided die. There should be one button with the text "Roll".
+# When the user clicks the button, a random integer from 1 to 6 should be displayed.
+#
+# Hint: You can generate a random number using randint() in the random module. If you’re not familiar with the
+# random module, then check out Generating Random Data in Python (Guide) for more information.
+window.title("Rolling a six-side dice")
+window.rowconfigure([0, 1], minsize=150, weight=1)
+window.columnconfigure(0, minsize=50, weight=1)
+
+from random import randint
 
 
-def decrease():
-    value = int(lbl_value["text"])
-    lbl_value["text"] = f"{value - 1}"
+def roll():
+    lbl_value["text"] = randint(1, 6)
 
 
-window.rowconfigure(0, minsize=50, weight=1)
-window.columnconfigure([0, 1, 2], minsize=50, weight=1)
+button_Roll = Button(master=window, text="Roll", height=5, width=20, command=roll)
+lbl_value = tk.Label(master=window, height=5, width=20, text="?")
 
-btn_decrease = tk.Button(master=window, text="-", command=decrease)
-btn_decrease.grid(row=0, column=0, sticky="nsew")
-
-lbl_value = tk.Label(master=window, text="0")
-lbl_value.grid(row=0, column=1)
-
-btn_increase = tk.Button(master=window, text="+", command=increase)
-btn_increase.grid(row=0, column=2, sticky="nsew")
+button_Roll.grid(row=0, column=0, sticky="nsew")
+lbl_value.grid(row=1, column=0)
 
 window.mainloop()
