@@ -1,3 +1,100 @@
+# --------------------------------------------------------------------------------------------------------------
+# Hello World
+# --------------------------------------------------------------------------------------------------------------
+# import tkinter as tk
+# from tkinter import ttk
+
+
+# def greet():
+#     print("Hello, world")
+#
+#
+# root = tk.Tk()
+# root.title("Hello")
+#
+# greet_button = ttk.Button(root, text="Greet", command=greet)
+# greet_button.pack(side="left", fill="x", expand=True)
+#
+# quit_button = ttk.Button(root, text="Quit", command=root.destroy)
+# quit_button.pack(side="left", fill="x", expand=True)
+# root.mainloop()
+
+# --------------------------------------------------------------------------------------------------------------
+# Label and Fields
+# --------------------------------------------------------------------------------------------------------------
+# import tkinter as tk
+# from tkinter import ttk
+#
+#
+# def greet():
+#     print(f"Hello, {user_name.get() or 'world'}")
+#
+#
+# root = tk.Tk()
+# root.title("Greeter")
+#
+# user_name = tk.StringVar()
+#
+# name_label = ttk.Label(root, text="Name: ")
+# name_label.pack(side="left", padx=(0, 10))
+# name_entry = ttk.Entry(root, width=15, textvariable=user_name)
+# name_entry.pack(side="left")
+# name_entry.focus()
+#
+# greet_button = ttk.Button(root, text="Greet", command=greet)
+# greet_button.pack(side="left", fill="x", expand=True)
+#
+# root.mainloop()
+
+# --------------------------------------------------------------------------------------------------------------
+# Packing components
+# --------------------------------------------------------------------------------------------------------------
+# import tkinter as tk
+# from tkinter import ttk
+#
+# root = tk.Tk()
+
+# tk.Label(root, text="Lable 1", bg="green").pack(side="left")
+# tk.Label(root, text="Lable 2", bg="red").pack(side="top")
+# -------------
+# tk.Label(root, text="Lable 1", bg="green").pack(side="left", fill="y")
+# tk.Label(root, text="Lable 2", bg="red").pack(side="top", fill="x")
+# -------------
+# tk.Label(root, text="Lable 1", bg="green").pack(side="left", fill="both")
+# tk.Label(root, text="Lable 2", bg="red").pack(side="top", fill="both")
+# -------------
+# tk.Label(root, text="Lable 1", bg="green").pack(side="left", fill="both", expand=True)
+# tk.Label(root, text="Lable 2", bg="red").pack(side="top")
+# -------------
+# tk.Label(root, text="Label left", bg="green").pack(
+#     side="left", expand=True, fill="both"
+# )
+#
+# tk.Label(root, text="Lable top", bg="red").pack(side="top", fill="both", expand=True)
+# tk.Label(root, text="Lable top", bg="red").pack(side="top", fill="both", expand=True)
+#
+# tk.Label(root, text="Label left", bg="green").pack(side="left", expand=True, fill="both")
+# tk.Label(root, text="Label left", bg="green").pack(side="left", expand=True, fill="both")
+#
+# root.mainloop()
+
+# --------------------------------------------------------------------------------------------------------------
+# Using frames for different layouts
+# --------------------------------------------------------------------------------------------------------------
+import tkinter as tk
+from tkinter import ttk
+
+root = tk.Tk()
+main = ttk.Frame(root)
+main.pack(side="left", fill="both", expand=True)
+
+tk.Label(main, text="Label top", bg="red").pack(side="top", fill="both", expand=True)
+tk.Label(main, text="Label top", bg="red").pack(side="top", fill="both", expand=True)
+
+tk.Label(root, text="Label left", bg="green").pack(side="left", fill="both", expand=True)
+root.mainloop()
+
+# --------------------------------------------------------------------------------------------------------------
 # from tkinter import *
 # from tkinter import ttk
 # import tkinter
@@ -54,14 +151,10 @@
 
 
 # --------------------------------------------------------------------------------------------------------------
-import tkinter
-from tkinter import *
-import tkinter as tk
 
-# Create a window object
-window = tk.Tk()
-
-
+# # Create a window object
+# window = tk.Tk()
+#
 # label = tk.Label(
 #     text="Hello, Tkinter",
 #     fg="white",
@@ -77,6 +170,7 @@ window = tk.Tk()
 #     fg="yellow"
 # ).pack()
 # window.mainloop()
+
 # --------------------
 
 # def add_name():
@@ -457,24 +551,74 @@ window = tk.Tk()
 
 # --------------------
 
-def calcul():
-    degres_f = entry.get()
-    result = float((int(degres_f) - 32) * (5 / 9))
-    label2["text"] = f"{result:1.2f}"
+# def calcul():
+#     degres_f = entry.get()
+#     result = float((int(degres_f) - 32) * (5 / 9))
+#     label2["text"] = f"{result:1.2f}"
+#
+#
+# window.title("Temperature Converter")
+# window.rowconfigure(0, minsize=50, weight=1)
+# window.columnconfigure([0, 4], minsize=30, weight=1)
+# entry = tk.Entry(window, bd=5)
+# label1 = tk.Label(window, text="\N{DEGREE FAHRENHEIT}")
+# buttonCalcul = tk.Button(window, text="\N{RIGHTWARDS BLACK ARROW}", command=calcul)
+# label2 = tk.Label(window, text="")
+# label3 = tk.Label(window, text="\N{DEGREE CELSIUS}")
+#
+# entry.grid(row=0, column=0)
+# label1.grid(row=0, column=1)
+# buttonCalcul.grid(row=0, column=2)
+# label2.grid(row=0, column=3)
+# label3.grid(row=0, column=4)
+# window.mainloop()
 
+# --------------------
 
-window.title("Temperature Converter")
-window.rowconfigure(0, minsize=50, weight=1)
-window.columnconfigure([0, 4], minsize=30, weight=1)
-entry = tk.Entry(window, bd=5)
-label1 = tk.Label(window, text="\N{DEGREE FAHRENHEIT}")
-buttonCalcul = tk.Button(window, text="\N{RIGHTWARDS BLACK ARROW}", command=calcul)
-label2 = tk.Label(window, text="")
-label3 = tk.Label(window, text="\N{DEGREE CELSIUS}")
-
-entry.grid(row=0, column=0)
-label1.grid(row=0, column=1)
-buttonCalcul.grid(row=0, column=2)
-label2.grid(row=0, column=3)
-label3.grid(row=0, column=4)
-window.mainloop()
+# # Building a Text Editor (Example App)
+# #
+# # In this section, you’ll build a text editor application that can create, open, edit, and save text files. There are
+# # three essential elements in the application:
+# #
+# #     A Button widget called btn_open for opening a file for editing
+# #     A Button widget called btn_save for saving a file
+# #     A TextBox widget called txt_edit for creating and editing the text file
+# #
+# # The three widgets will be arranged so that the two buttons are on the left-hand side of the window, and the text box
+# # is on the right-hand side. The whole window should have a minimum height of 800 pixels, and txt_edit should have a
+# # minimum width of 800 pixels. The whole layout should be responsive so that if the window is resized, then txt_edit is
+# # resized as well. The width of the Frame holding the buttons should not change, however.
+# #
+# # Here’s a sketch of how the window will look:
+# # A design sketch for a text editor application
+# #
+# # You can achieve the desired layout using the .grid() geometry manager. The layout contains a single row and two
+# # columns:
+# #
+# #     A narrow column on the left for the buttons
+# #     A wider column on the right for the text box
+# #
+# # To set the minimum sizes for the window and txt_edit, you can set the minsize parameters of the window methods
+# # .rowconfigure() and .columnconfigure() to 800. To handle resizing, you can set the weight parameters of these methods
+# # to 1.
+# #
+# # In order to get both buttons into the same column, you’ll need to create a Frame widget called fr_buttons. According
+# # to the sketch, the two buttons should be stacked vertically inside of this frame, with btn_open on top. You can do
+# # that with either the .grid() or .pack() geometry manager. For now, you’ll stick with .grid() since it’s a little
+# # easier to work with.
+#
+# window.title("Text Editor")
+#
+# btn_open = Button(text="OPEN")
+# btn_saveas = Button(text="SaveAs")
+#
+# window.rowconfigure([0, 1], minsize=150, weight=0)
+# window.columnconfigure([0, 1], minsize=30, weight=0)
+#
+# txt_edit = Text(window)
+#
+# btn_open.grid(row=0, column=0, sticky="ne", padx=10, pady=10)
+# btn_saveas.grid(row=0, column=0, sticky="ne", padx=10, pady=60)
+# txt_edit.grid(row=0, column=1, sticky="ns", rowspan=2, padx=10, pady=10)
+#
+# window.mainloop()
