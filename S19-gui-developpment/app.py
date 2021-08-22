@@ -269,70 +269,122 @@
 #
 # root.mainloop()
 
+######################################## listbox ######################################
+# ------------------------------
+# listbox single choice
 
-
-
-
-
-
-
-
-
-# --------------------------------------------------------------------------------------------------------------
 # from tkinter import *
-# from tkinter import ttk
-# import tkinter
+#
+# ws = Tk()
+# ws.title('Python Guides')
+# ws.geometry('400x300')
+# ws.config(bg='#446644')
+#
+# def showSelected():
+#     show.config(text=lb.get(ANCHOR))
 #
 #
-# def selection():
-#     try:
-#         # print(Lb1.get(Lb1.curselection()))
-#         for i in Lb1.curselection():
-#             print(Lb1.get(i))
-#     except Lb1.get(Lb1.curselection(), last=None) == NONE:
-#         print("Veuillez selectionner au moins une valeur")
+# lb = Listbox(ws)
+# lb.pack()
+# lb.insert(0, 'red')
+# lb.insert(1, 'green')
+# lb.insert(2, 'yellow')
+# lb.insert(3, 'blue')
 #
+# Button(ws, text='Show Selected', command=showSelected).pack(pady=20)
+# show = Label(ws)
+# show.pack()
 #
-# def start():
-#     Lb1.delete(0, 5)
-#     Lb1.pack()
-#
-#
-# def insertion(element):
-#     # print(Lb1.insert(END, element))
-#     print(element)
-#
-#
-# def recupVal():
-#     print(entry_field.get())
-#
-#
-# root = Tk()
-#
-# Lb1 = Listbox(root, selectmode=MULTIPLE)
-# Lb1.insert(1, "Python")
-# Lb1.insert(2, "Perl")
-# Lb1.insert(3, "C")
-# Lb1.insert(4, "PHP")
-# Lb1.insert(5, "JSP")
-# Lb1.insert(6, "Ruby")
-#
-# Lb1.pack()
-#
-# quit_button = ttk.Button(text="Quit", command=root.destroy).pack()
-# valid_button = ttk.Button(text="Validate", command=selection).pack()
-#
-# start_button = ttk.Button(text="Start", command=start).pack()
-#
-# button = Button(root, text="Valider", command=recupVal).pack()
-#
-# label_field = Label(root, text="add a word").pack(side=LEFT)
-#
-# entry_field = Entry(root, bd=5)
-# entry_field.pack(side=RIGHT)
-#
-# root.mainloop()
+# ws.mainloop()
 
+# ------------------------------
+# Listbox multiple choice
+
+# from tkinter import *
+#
+# ws = Tk()
+# ws.title('Python Guides')
+# ws.geometry('400x300')
+#
+# var = StringVar()
+#
+#
+# def showSelected():
+#     countries = []
+#     cname = lb.curselection()
+#     for i in cname:
+#         op = lb.get(i)
+#         countries.append(op)
+#     for val in countries:
+#         print(val)
+#
+#
+# show = Label(ws, text="Select Your Country", font=("Times", 14), padx=10, pady=10)
+# show.pack()
+# lb = Listbox(ws, selectmode="multiple")
+# lb.pack(padx=10, pady=10, expand=YES, fill="both")
+#
+# x = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Australia", "Brazil", "Canada", "China", "Iceland",
+#      "Israel", "United States", "Zimbabwe"]
+#
+# for item in range(len(x)):
+#     lb.insert(END, x[item])
+#     lb.itemconfig(item, bg="#bdc1d6")
+#
+# Button(ws, text="Show Selected", command=showSelected).pack()
+# ws.mainloop()
+
+# ------------------------------
+# listbox multiple choices + add an entry in the listbox
+from tkinter import *
+from tkinter import ttk
+import tkinter
+
+
+def selection():
+    try:
+        for i in Lb1.curselection():
+            print(Lb1.get(i))
+    except Lb1.get(Lb1.curselection(), last=None) == NONE:
+        print("Veuillez selectionner au moins une valeur")
+
+
+def start():
+    Lb1.delete(0, 5)
+    Lb1.pack()
+
+
+def recupVal():
+    print(entry_field.get())
+    Lb1.insert(Lb1.size(), entry_field.get())
+    Lb1.pack()
+
+
+root = Tk()
+
+Lb1 = Listbox(root, selectmode=MULTIPLE)
+Lb1.insert(1, "Python")
+Lb1.insert(2, "Perl")
+Lb1.insert(3, "C")
+Lb1.insert(4, "PHP")
+Lb1.insert(5, "JSP")
+Lb1.insert(6, "Ruby")
+
+Lb1.pack()
+
+quit_button = ttk.Button(text="Quit", command=root.destroy).pack()
+valid_button = ttk.Button(text="Validate", command=selection).pack()
+
+start_button = ttk.Button(text="Start", command=start).pack()
+
+button = Button(root, text="Valider", command=recupVal).pack()
+
+label_field = Label(root, text="add a word").pack(side=LEFT)
+
+entry_field = Entry(root, bd=5)
+entry_field.pack(side=RIGHT)
+
+root.mainloop()
 
 # --------------------------------------------------------------------------------------------------------------
 
