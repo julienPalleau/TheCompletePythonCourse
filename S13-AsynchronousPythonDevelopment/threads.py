@@ -34,7 +34,7 @@
 # Multiprocessing in Python
 
 import time
-from multiprocessing import Process
+from concurrent.futures import ProcessPoolExecutor
 
 
 def ask_user():
@@ -55,20 +55,11 @@ def complex_calculation():
 start = time.time()
 print(f'Single thread total time: {time.time() - start}')
 
-
-
 if __name__ == "__main__":
-    process = Process(target=complex_calculation)
-    process2 = Process(target=complex_calculation)
-    process.start()
-    process2.start()
-
     start = time.time()
+    with ProcessPoolExecutor(max_workers=2) as pool:
+        pool.submit(complex_calculation)
+        pool.submit(complex_calculation)
 
-    process.join()
-    process2.join()
 
 print(f'Two process Total time: {time.time() - start}')
-
-
-

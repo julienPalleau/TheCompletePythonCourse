@@ -342,10 +342,10 @@ import tkinter
 
 
 def selection():
-    try:
+    if Lb1.curselection() != ():
         for i in Lb1.curselection():
             print(Lb1.get(i))
-    except Lb1.get(Lb1.curselection(), last=None) == NONE:
+    else:
         print("Veuillez selectionner au moins une valeur")
 
 
@@ -357,7 +357,11 @@ def start():
 def recupVal():
     print(entry_field.get())
     Lb1.insert(Lb1.size(), entry_field.get())
-    Lb1.pack()
+    delete()
+
+
+def delete():
+    entry_field.delete(0, 'end')
 
 
 root = Tk()
