@@ -71,7 +71,7 @@ class ParsedItem:
         item_price = self.soup.select_one(locator).string  # £51.77
         pattern = '£([0-9]+\.[0-9]+)'
         matcher = re.search(pattern, item_price)
-        return float(matcher.group(1))  # 51.77
+        return float(matcher.group(1))  # £51.77
 
     @property
     def rating(self):
