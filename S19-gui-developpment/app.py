@@ -355,9 +355,23 @@ def start():
 
 
 def recupVal():
-    print(entry_field.get())
-    Lb1.insert(Lb1.size(), entry_field.get())
-    delete()
+    # # original
+    # print(entry_field.get())
+    # Lb1.insert(Lb1.size(), entry_field.get())
+    # delete()
+
+    # # Test pour le jeux ortho
+    list1 = ["Python", "Perl", "C", "PHP", "JSP", "Ruby"]
+    list2 = []
+    for i, listbox_entry in enumerate(Lb1.get(0, END)):
+        list2.append(listbox_entry)
+
+    for element in list2:
+        if element in list1:
+            list1.remove(element)
+
+    print(f"list1 {list1}")
+    print(f"list2 {list2}")
 
 
 def delete():
