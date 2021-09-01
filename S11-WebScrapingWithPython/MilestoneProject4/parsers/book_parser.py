@@ -1,6 +1,6 @@
 import re
 import logging
-from MilestoneProject4.locators.book_locators import BookLocators
+from locators.book_locators import BookLocators
 
 logger = logging.getLogger('scraping.book_parser')
 

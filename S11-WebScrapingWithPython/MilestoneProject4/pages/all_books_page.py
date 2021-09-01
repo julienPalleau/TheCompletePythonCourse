@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from MilestoneProject4.locators.all_books_page import AllBooksPageLocators
 from MilestoneProject4.parsers.book_parser import BookParser
 
+
 logger = logging.getLogger('scraping.all_books_page')
 
 class AllBooksPage:
