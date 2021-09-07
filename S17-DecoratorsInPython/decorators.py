@@ -4,7 +4,7 @@
 #
 #
 # def user_has_permission(func):
-#     @functools.wraps(func)
+#     @functools.wraps(func)  # <--- this wrapper is what allow us to get the right function name and the doc for the 3 prints below
 #     def secure_func(*args, **kwargs):
 #         if user.get('access_level') == 'admin':
 #             return func(*args, **kwargs)
@@ -25,6 +25,8 @@
 #
 #
 # print(my_function.__name__)
+# print(another.__name__)
+# print(my_function.__doc__)
 # print(my_function('movies'))
 # print(another())
 
@@ -56,15 +58,10 @@ else:
 - Your decorator should keep the original function's `__name__` and `__doc__` strings.
 """
 
-# DO NOT CHANGE
-# def get_current_user_role() -> int:
-#     # return the current user's role, represented by an int
-#     # for example, 0 - admin, 1 - user, 2 - guest
-#     # You don't need to change this function, we will replace it with a real function that returns the user's role
-#     return 0
 from functools import wraps
 
 
+# DO NOT CHANGE
 def access_control(access_level: int):
     def outer_wrapper(func):
         @wraps(func)
@@ -89,7 +86,65 @@ def delete_file(filename):
     print(f'{filename} is deleted')
 
 
-delete_file('test')
+delete_file('file')
+
+"""
+Taken from our Complete Python Course: https://www.udemy.com/the-complete-python-course/?couponCode=REPLIT
+Purely as an example, a function can have multiple decorators.
+Decorators are applied from bottom to top, which means the top decorator is the first one to be evaluated when the function is executed.
+In this example, we have two decorators. One checks the user's access_level, the other checks the user's username (must start with the letter 'j').
+"""
+
+import functools
+
+# Try the various combinations below!
+user = {'username': 'jose123', 'access_level': 'admin'}
+# user = {'username': 'bob', 'access_level': 'admin'}
+# user = {'username': 'jose123', 'access_level': 'user'}
+# user = {'username': 'bob', 'access_level': 'user'}
 
 
+def user_name_starts_with_j(func):
+    """
+    This decorator only runs the function passed if the user's username starts with a j.
+    """
 
+    @functools.wraps(func)
+    def secure_func(*args, **kwargs):
+        if user.get('username').startswith('j'):
+            return func(*args, **kwargs)
+        else:
+            print("User's username did not start with 'j'.")
+
+    return secure_func
+
+
+def user_has_permission(func):
+    """
+    This decorator only runs the function passed if the user's access_level is admin.
+    """
+
+    @functools.wraps(func)
+    def secure_func(*args, **kwargs):
+        if user.get('access_level') == 'admin':
+            return func(*args, **kwargs)
+        else:
+            print("User's access_level was not 'admin'.")
+
+    return secure_func
+
+
+@user_has_permission
+@user_name_starts_with_j
+def double_decorator():
+    return 'I ran.'
+
+
+print(double_decorator())
+
+"""
+When `double_decorator()` runs, this chain of "functions" runs:
+user_has_permission -> user_name_starts_with_j -> double_decorator
+That is because `user_name_starts_with_j` is the first decorator to be applied. It replaces `double_decorator` by the function it returns.
+Then, `user_has_permission` is applied—and it replaces the function the other decorator returned by the function it returns.
+"""
