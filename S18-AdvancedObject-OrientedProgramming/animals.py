@@ -6,7 +6,7 @@ class Animal(metaclass=ABCMeta):
         print('Walking...')
 
     @abstractmethod
-    def num_legs(self):
+    def  num_legs(self):
         pass
 
 
@@ -28,8 +28,12 @@ class Monkey(Animal):
 
 d = Dog('Rolf')
 m = Monkey('Chita')
-print(d.num_legs())
-print(m.num_legs())
+# print(d.num_legs())
+# print(m.num_legs())
 
+animals = [Dog('Rolf'), Monkey('Bob')]
+for a in animals:
+    print(isinstance(a, Animal))
+    print(a.num_legs())
 
 
