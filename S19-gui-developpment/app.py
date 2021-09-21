@@ -119,14 +119,15 @@ def check_for_changes():
 
 
 def close_current_tab():
-    current = get_text_widget()
     if current_tab_unsaved() and not confirm_close():
         return
+
+    current_tab = get_current_tab()
 
     if len(notebook.tabs()) == 1:
         create_file()
 
-    notebook.forget(current)
+    notebook.forget(current_tab)
 
 
 def confirm_close():
@@ -141,7 +142,8 @@ def confirm_quit():
     unsaved = False
 
     for tab in notebook.tabs():
-        text_widget = root.nametowidget(tab)
+        tab_widget = root.nametowidget(tab)
+        text_widget = tab_widget.winfo_children()[0]
         content = text_widget.get("1.0", "end-1c")
 
         if hash(content) != text_contents[str(text_widget)]:
@@ -155,23 +157,36 @@ def confirm_quit():
 
 
 def create_file(content="", title="Untitled"):
-    text_area = tk.Text(notebook)
-    text_area.insert("end", content)
-    text_area.pack(fill="both", expand=True)
+    container = ttk.Frame(notebook)
+    container.pack()
 
-    notebook.add(text_area, text=title)
-    notebook.select(text_area)
+    text_area = tk.Text(container)
+    text_area.insert("end", content)
+    text_area.pack(side="left", fill="both", expand=True)
+
+    notebook.add(container, text=title)
+    notebook.select(container)
 
     text_contents[str(text_area)] = hash(content)
 
+    text_scroll = ttk.Scrollbar(container, orient="vertical", command=text_area.yview)
+    text_scroll.pack(side="right", fill="y")
+    text_area["yscrollcommand"] = text_scroll.set
+
 
 def current_tab_unsaved():
-    current_tab_name = notebook.tab("current", "text")
-    return current_tab_name[-1] == "*"
+    text_widget = get_text_widget()
+    content = text_widget.get("1.0", "end-1c")
+    return hash(content) != text_contents[str(text_widget)]
+
+
+def get_current_tab():
+    return notebook.nametowidget(notebook.select())
 
 
 def get_text_widget():
-    text_widget = notebook.nametowidget(notebook.select())
+    current_tab = get_current_tab()
+    text_widget = current_tab.winfo_children()[0]
 
     return text_widget
 
@@ -216,7 +231,7 @@ def save_file():
 def show_about_info():
     messagebox.showinfo(
         title="About",
-        message="The Text Editor is a simple tabbed text ditor designed to help you learn Tkinter."
+        message="The Text Editor is a simple tabbed text editor designed to help you learn Tkinter."
     )
 
 
@@ -224,7 +239,7 @@ root = tk.Tk()
 root.title("Text Editor")
 root.option_add("*tearOff", False)  # the-complete-python-course - lecon 265
 
-main = tk.Frame(root)
+main = ttk.Frame(root)
 main.pack(fill="both", expand=True, padx=1, pady=(4, 0))
 
 menubar = tk.Menu()
@@ -232,6 +247,7 @@ root.config(menu=menubar)
 
 file_menu = tk.Menu(menubar)
 help_menu = tk.Menu(menubar)
+
 menubar.add_cascade(menu=file_menu, label="File")
 menubar.add_cascade(menu=help_menu, label="Help")
 
@@ -245,6 +261,7 @@ help_menu.add_command(label="About", command=show_about_info)
 
 notebook = ttk.Notebook(main)
 notebook.pack(fill="both", expand=True)
+
 create_file()
 
 root.bind("<KeyPress>", lambda event: check_for_changes())
