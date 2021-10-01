@@ -44,14 +44,12 @@ class BinaryTree:
         if not current_node:
             return
         self._inorder_recursive(current_node.left)
-        if current_node:
-            print(current_node)
+        print(current_node)
         self._inorder_recursive(current_node.right)
 
     def _preorder_recursive(self, current_node):
         if not current_node:
             return
-        if current_node:
-            print(current_node)
-            self._inorder_recursive(current_node.left)
-            self._inorder_recursive(current_node.right)
+        print(current_node)
+        self._inorder_recursive(current_node.left)
+        self._inorder_recursive(current_node.right)
